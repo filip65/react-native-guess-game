@@ -8,8 +8,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 export default function App() {
-  const [gameNumber, setGameNumber] = useState(null);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameNumber, setGameNumber] = useState(4);
+  const [gameOver, setGameOver] = useState(true);
   const [rounds, setRounds] = useState(0);
 
   const [fontsLoaded] = useFonts({

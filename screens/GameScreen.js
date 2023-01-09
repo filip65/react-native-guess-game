@@ -66,37 +66,42 @@ const GameScreen = ({ selectedNumber, setGameOver, setRounds }) => {
   }, []);
 
   return (
-    <View className="flex-1 p-4">
-      <Title text="Opponent's Guess" />
-      <NumberContainer>{currentGuess}</NumberContainer>
-      <Card className="space-y-2">
-        <Text className="text-xl text-yellow font-[open-sans]">
-          Higher or lower?
-        </Text>
-        <View className="flex-row">
-          <View className="flex-1">
-            <Button onPress={() => generateNextNumber("lower")}>
-              <Ionicons name="md-remove" color="white" size={24} />
-            </Button>
+    <View className="flex-1 p-4 landscape:flex-row">
+      <View className="landscape:flex-1">
+        <Title text="Opponent's Guess" />
+        <NumberContainer>{currentGuess}</NumberContainer>
+      </View>
+      <View className="landscape:w-6"></View>
+      <View className="landscape:flex-1">
+        <Card className="space-y-2 landscape:hidden">
+          <Text className="text-xl text-yellow font-[open-sans]">
+            Higher or lower?
+          </Text>
+          <View className="flex-row">
+            <View className="flex-1">
+              <Button onPress={() => generateNextNumber("lower")}>
+                <Ionicons name="md-remove" color="white" size={24} />
+              </Button>
+            </View>
+            <View className="flex-1">
+              <Button onPress={() => generateNextNumber("greater")}>
+                <Ionicons name="md-add" color="white" size={24} />
+              </Button>
+            </View>
           </View>
-          <View className="flex-1">
-            <Button onPress={() => generateNextNumber("greater")}>
-              <Ionicons name="md-add" color="white" size={24} />
-            </Button>
-          </View>
-        </View>
-      </Card>
-      <FlatList
-        className="mt-6"
-        data={guessRounds}
-        renderItem={(item) => (
-          <GuessLogItem
-            guess={item.item}
-            roundNumber={guessRounds.length - item.index}
-          />
-        )}
-        keyExtractor={(item) => item}
-      />
+        </Card>
+        <FlatList
+          className="mt-6"
+          data={guessRounds}
+          renderItem={(item) => (
+            <GuessLogItem
+              guess={item.item}
+              roundNumber={guessRounds.length - item.index}
+            />
+          )}
+          keyExtractor={(item) => item}
+        />
+      </View>
     </View>
   );
 };
