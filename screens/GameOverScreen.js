@@ -24,9 +24,9 @@ const GameOverScreen = ({ restartGame, roundsNumber, guessNumber }) => {
       </View>
       <Text className="text-2xl landscape:text-lg text-center my-4">
         Your phone needed
-        <Text className="font-bold text-primary"> {roundsNumber} </Text>
+        <HightLight> {roundsNumber} </HightLight>
         rounds to guess the number
-        <Text className="font-bold text-primary"> {guessNumber}</Text>
+        <HightLight> {guessNumber}</HightLight>
       </Text>
       <Button className="capitalize" onPress={restartGame}>
         Start New Game
@@ -34,5 +34,9 @@ const GameOverScreen = ({ restartGame, roundsNumber, guessNumber }) => {
     </View>
   );
 };
+
+const HightLight = ({ children }) => (
+  <Text className="font-bold text-primary">{children}</Text>
+);
 
 export default GameOverScreen;
