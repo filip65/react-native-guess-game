@@ -1,6 +1,6 @@
 import StartGameScreen from "./screens/StartGameScreen";
 import { LinearGradient } from "expo-linear-gradient";
-import { ImageBackground, SafeAreaView, Dimensions } from "react-native";
+import { ImageBackground, SafeAreaView, StatusBar } from "react-native";
 import { useEffect, useState } from "react";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
@@ -37,33 +37,36 @@ export default function App() {
   }
 
   return (
-    <LinearGradient className="flex-1" colors={["#4e0329", "#ddb52f"]}>
-      <ImageBackground
-        source={require("./assets/images/background.png")}
-        resizeMethod="cover"
-        className="flex-1"
-        imageStyle={{
-          opacity: 0.15,
-        }}
-      >
-        <SafeAreaView className="flex-1">
-          {!gameNumber ? (
-            <StartGameScreen setNumber={setGameNumber} />
-          ) : !gameOver ? (
-            <GameScreen
-              selectedNumber={gameNumber}
-              setGameOver={setGameOver}
-              setRounds={setRounds}
-            />
-          ) : (
-            <GameOverScreen
-              restartGame={restartGame}
-              guessNumber={gameNumber}
-              roundsNumber={rounds}
-            />
-          )}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar barStyle="light-content" />
+      <LinearGradient className="flex-1" colors={["#4e0329", "#ddb52f"]}>
+        <ImageBackground
+          source={require("./assets/images/background.png")}
+          resizeMethod="cover"
+          className="flex-1"
+          imageStyle={{
+            opacity: 0.15,
+          }}
+        >
+          <SafeAreaView className="flex-1">
+            {!gameNumber ? (
+              <StartGameScreen setNumber={setGameNumber} />
+            ) : !gameOver ? (
+              <GameScreen
+                selectedNumber={gameNumber}
+                setGameOver={setGameOver}
+                setRounds={setRounds}
+              />
+            ) : (
+              <GameOverScreen
+                restartGame={restartGame}
+                guessNumber={gameNumber}
+                roundsNumber={rounds}
+              />
+            )}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
